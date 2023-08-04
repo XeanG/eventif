@@ -6,8 +6,10 @@ from django.template.loader import render_to_string
 
 def subscribe(request):
    if request.method == 'POST':
-      body = render_to_string('subscriptions/subscription_email.txt')
-      mail.send_mail('Confirmação de Inscrição',body,'contato@eventif.com.br',['contato@eventif.com.br', 'jeanpr667@gmail.com'])
+      form = SubscriptionForm(request.POST)
+      form.full_clean()
+      body = render_to_string('subscriptions/subscription_email.txt', form.cleaned_data)
+      mail.send_mail('Confirmação de Inscrição',body,'contato@eventif.com.br',['contato@eventif.com.br', form.cleaned_data['email']])
       return HttpResponseRedirect('/inscricao/')
    context = {"form":SubscriptionForm()}
    return render(request, 'subscriptions/subscription_form.html', context)
