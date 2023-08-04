@@ -1,4 +1,5 @@
 from django.test import TestCase
+from subscriptions.forms import SubscriptionForm
 
 class SubscribeTest(TestCase):
     def setUp(self):
@@ -22,3 +23,12 @@ def test_html(self):
 def test_csrf(self):
     """HTML must contain csrf"""
     self.assertContains(self.response, "csrfmiddlewaretoken")
+
+def test_has_form(self):
+    """Context must have subscription form"""
+    form = self.response.context["form"]
+    self.assertIsInstance(form,SubscriptionForm)
+
+def test_form_has_fields(self):
+    form = self.response.context['form']
+    self.assertSequenceEqual(['name', 'cpf', 'email', 'phone'], list(form,fields))
