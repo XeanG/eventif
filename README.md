@@ -16,15 +16,9 @@ Configure a instância com o arquivo .env
 Execute os testes
 
 git clone git@github.com:XeanG/eventif
-
 cd eventif
-
 python -m venv .eventif
-
 source .eventif/bin/activate
-
 pip install -r requirements.txt
-
 cp contrib/env-sample .env
-
 python manage.py test
