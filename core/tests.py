@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-class testHome(TestCase):
+class TestHome(TestCase):
     def setUp(self):
         self.response = self.client.get('/')
 
