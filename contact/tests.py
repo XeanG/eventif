@@ -8,24 +8,24 @@ class TestesContato(TestCase):
         self.dados_validos = {
             'nome': 'Whesley Souza', 'email': 'whesley.souza@aluno.riogrande.ifrs.edu.br', 'mensagem': 'TESTANDO'
         }
-        self.resposta = self.client.post(reverse('contact_view'), data=self.dados_validos)
+        self.response = self.client.post(reverse('contact_view'), data=self.dados_validos)
 
     def test_get(self):
-        resposta = self.client.get(reverse('contact_view'))
-        self.assertEqual(resposta.status_code, 200)
-        self.assertTemplateUsed(resposta, 'contact/contact_form.html')
+        response = self.client.get(reverse('contact_view'))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'contact/contact_form.html')
 
     def test_post_valido(self):
-        self.assertEqual(self.resposta.status_code, 302)
+        self.assertEqual(self.response.status_code, 302)
 
     def test_post_invalido(self):
         dados_invalidos = {
             'nome': '', 'email': 'invalid-email', 'mensagem': 'invalido'
         }
-        resposta_invalida = self.client.post(reverse('contact_view'), data=dados_invalidos)
-        self.assertEqual(resposta_invalida.status_code, 200)
+        response_invalida = self.client.post(reverse('contact_view'), data=dados_invalidos)
+        self.assertEqual(response_invalida.status_code, 200)
 
     def test_enviar_email(self):
-        self.assertEqual(self.resposta.status_code, 302)
+        self.assertEqual(self.response.status_code, 302)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, 'contato@eventif.com.br')
