@@ -1,13 +1,12 @@
-from django.core import mail
-from django.urls import reverse
-from .forms import ContactForm
 from django.test import TestCase
-from .views import contact_view
+from django.urls import reverse
+from django.core import mail
+from .forms import ContactForm
 
 class TestesContato(TestCase):
     def setUp(self):
         self.dados_validos = {
-            'nome': 'Whesley Souza', 'email': 'whesley.souza@aluno.riogrande.ifrs.edu.br', 'mensagem': 'TESTANDO'
+            'nome': 'Whesley Souza', 'email': 'whesley.souza@aluno.riogrande.ifrs.edu.br',  'mensagem': 'TESTANDO'
         }
         self.response = self.client.post(reverse('contact_view'), data=self.dados_validos)
 
@@ -23,8 +22,8 @@ class TestesContato(TestCase):
         dados_invalidos = {
             'nome': '', 'email': 'invalid-email', 'mensagem': 'invalido'
         }
-        response_invalida = self.client.post(reverse('contact_view'), data=dados_invalidos)
-        self.assertEqual(response_invalida.status_code, 200)
+        response = self.client.post(reverse('contact_view'), data=dados_invalidos)
+        self.assertEqual(response.status_code, 200)
 
     def test_enviar_email(self):
         self.assertEqual(self.response.status_code, 302)
