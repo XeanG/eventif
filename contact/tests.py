@@ -7,7 +7,7 @@ class ContactTests(TestCase):
     def setUp(self):
         self.valid_data = {
             'nome': 'Jean Teixeira',
-            'email': 'jean.teixeira@aluno.riogrande.ifrs.edu.br',
+            'email': 'contato@eventif.com.br',
             'mensagem': 'teste'
         }
         self.response = self.client.post(reverse('contact_view'), data=self.valid_data)
