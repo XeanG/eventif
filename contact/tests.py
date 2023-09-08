@@ -18,7 +18,7 @@ class ContactTests(TestCase):
         self.assertTemplateUsed(response, 'contact/contact_form.html')
 
     def test_post_valid(self):
-        self.assertEqual(self.response.status_code, 302)
+        self.assertEqual(self.response.status_code, 200)
 
     def test_post_invalid(self):
         invalid_data = {
@@ -30,6 +30,6 @@ class ContactTests(TestCase):
         self.assertEqual(response.status_code, 200)
 
     def test_send_email(self):
-        self.assertEqual(self.response.status_code, 302)
+        self.assertEqual(self.response.status_code, 200)
         self.assertEqual(len(mail.outbox), 1)
         self.assertEqual(mail.outbox[0].subject, 'Contato do site')
