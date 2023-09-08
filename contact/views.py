@@ -15,13 +15,13 @@ def contact_view(request):
 def create(request):
     form = ContactForm(request.POST)
     if form.is_valid():
-        nome = form.cleaned_data['nome']
-        telefone = form.cleaned_data['telefone']
+        nome = form.cleaned_data['name']
+        telefone = form.cleaned_data['phone']
         email = form.cleaned_data['email']
-        mensagem = form.cleaned_data['mensagem']
+        mensagem = form.cleaned_data['message']
         
         assunto = 'Contato do site'
-        remetente = email
+        remetente = settings.DEFAULT_FROM_EMAIL
         lista_destinatarios = ['contato@eventif.com.br', email]
         
         conteudo_email = render_to_string('contact/contact_email.txt', {

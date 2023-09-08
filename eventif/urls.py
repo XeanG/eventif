@@ -23,6 +23,6 @@ from contact.views import contact_view
 urlpatterns = [
     path('', home),
     path('inscricao/', subscribe),
+    path('contact/', contact_view),
     path("admin/", admin.site.urls),
-    path('contact/', contact_view, name='contact_view')
 ]
