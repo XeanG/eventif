@@ -6,7 +6,7 @@ from django.conf import settings
 from .forms import ContactForm
 from django.shortcuts import render
 
-def visualizar_contato(request):
+def contact_view(request):
     if request.method == 'POST':
         return criar_contato(request)
     else:
