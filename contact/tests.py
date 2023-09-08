@@ -1,6 +1,8 @@
 from django.test import TestCase
 from django.urls import reverse
 from .forms import ContactForm
+from .views import contact_view 
+
 
 class TestesContato(TestCase):
     def test_get(self):
