@@ -7,7 +7,7 @@ class SubscriptionDetailGet(TestCase):
         self.resp = self.client.get('/inscricao/{}/'.format(self.obj.pk))
 
     def test_get(self):
-        self.assertEqual(404, self.resp.status_code)
+        self.assertEqual(200, self.resp.status_code)
     
     def test_template(self):
         self.assertTemplateUsed(self.resp, 'subscriptions/subscription_detail.html')
