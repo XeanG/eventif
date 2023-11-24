@@ -1,15 +1,15 @@
-olá! Tudo bem?
+Olá! Tudo bem?
 
-muito obrigado por se inscrever no EventIF.
+Muito obrigado por se inscrever no EventIF.
 
-estes foram os dados que você enviou na sua inscrição.
+Estes foram os dados que você enviou na sua inscrição.
 
 Nome: {{ subscription.name }}
 CPF: {{ subscription.cpf }}
 Email: {{ subscription.email }}
 Telefone: {{ subscription.phone }}
 
-em até 48h úteis alguém da nossa equipe entrará em contato com você para concluirmos a sua inscrição.
+Em até 48h úteis alguém da nossa equipe entrará em contato com você para concluirmos a sua inscrição.
 
 Atenciosamente,
 Equipe EventIF
