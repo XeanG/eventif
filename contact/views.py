@@ -52,7 +52,7 @@ def create(request):
         messages.success(request, 'Mensagem enviada com sucesso')
         
         # Redireciona para a página de contato
-        return HttpResponseRedirect('/contact/')
+        return HttpResponseRedirect('/contato/')
     
     # Se o formulário não for válido, renderize o formulário novamente com erros.
     return render(request, 'contact/contact_form.html', {'form': form})
