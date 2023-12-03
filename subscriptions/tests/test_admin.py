@@ -7,10 +7,10 @@ from unittest.mock import Mock
 class SubscriptionModelAdminTest(TestCase):
     def setUp(self):
         Subscription.objects.create(
-            name="Cleber Fonseca",
+            name="Jean Teixeira",
             cpf="12345678901",
-            email="profcleberfonseca@gmail.com",
-            phone="53912345678"
+            email="jean.teixeira@aluno.riogrande.ifrs.edu.br",
+            phone="53 991561217"
         )
 
         self.model_admin = SubscriptionModelAdmin(Subscription, admin.site)

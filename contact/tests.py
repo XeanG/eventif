@@ -6,8 +6,8 @@ from django.urls import reverse
 class ContactTests(TestCase):
     def setUp(self):
         self.valid_data = {
-            'name': 'Jean Pierre',
-            'phone': '53991561217',
+            'name': 'Jean Teixeira',
+            'phone': '53 991561217',
             'email': 'jean.teixeira@aluno.riogrande.ifrs.edu.br',
             'message': 'teste'
         }

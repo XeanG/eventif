@@ -6,10 +6,10 @@ from subscriptions.models import Subscription
 class SubscriptionModelTest(TestCase):
     def setUp(self):
         self.obj = Subscription(
-            name="Cleber Fonseca",
+            name="Jean Teixeira",
             cpf="12345678901",
-            email="profcleberfonseca@gmail.com",
-            phone="53912345678"
+            email="jean.teixeira@aluno.riogrande.ifrs.edu.br",
+            phone="53 991561217"
         )
         self.obj.save()
 
@@ -20,7 +20,7 @@ class SubscriptionModelTest(TestCase):
         self.assertIsInstance(self.obj.created_at, datetime)
 
     def test_str(self):
-        self.assertEqual('Cleber Fonseca', str(self.obj))
+        self.assertEqual('Jean Teixeira', str(self.obj))
 
     def test_paid_default_false(self):
         self.assertEqual(False, self.obj.paid)
