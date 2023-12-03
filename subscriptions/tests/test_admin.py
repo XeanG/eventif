@@ -7,10 +7,10 @@ from unittest.mock import Mock
 class SubscriptionModelAdminTest(TestCase):
     def setUp(self):
         Subscription.objects.create(
-            name='Cleber Fonseca',
-            cpf='12345678901',
-            email='profcleberfonseca@gmail.com',
-            phone='53912345678'
+            name="Cleber Fonseca",
+            cpf="12345678901",
+            email="profcleberfonseca@gmail.com",
+            phone="53912345678"
         )
 
         self.model_admin = SubscriptionModelAdmin(Subscription, admin.site)
@@ -24,7 +24,8 @@ class SubscriptionModelAdminTest(TestCase):
 
     def test_message(self):
         self.call_action()
-        self.mock.assert_called_once_with(None, '1 inscrição foi marcada como paga')
+        self.mock.assert_called_once_with(
+            None, '1 inscrição foi marcada como paga')
 
     def call_action(self):
         queryset = Subscription.objects.all()

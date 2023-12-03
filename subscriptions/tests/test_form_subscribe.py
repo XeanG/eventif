@@ -1,12 +1,13 @@
 from django.test import TestCase
+
 from subscriptions.forms import SubscriptionForm
 
 
-class SubscriptionFormTest(TestCase):
+class subscriptionFormTest(TestCase):
     def test_form_has_fields(self):
-        form = SubscriptionForm()
+        self.form = SubscriptionForm()
         self.assertSequenceEqual(
-            ['name', 'cpf', 'email', 'phone'], list(form.fields))
+            ['name', 'cpf', 'email', 'phone'], list(self.form.fields))
 
     def test_cpf_has_digit(self):
         form = self.make_validated_form(cpf='ABCD5678901')
@@ -17,8 +18,8 @@ class SubscriptionFormTest(TestCase):
         self.assertFormErrorCode(form, 'cpf', 'length')
 
     def test_name_must_be_capitalized(self):
-        form = self.make_validated_form(name='JEAN pierre')
-        self.assertEqual('Jean Pierre', form.cleaned_data['name'])
+        form = self.make_validated_form(name='CLEBER fonseca')
+        self.assertEqual('Cleber Fonseca', form.cleaned_data['name'])
 
     def test_email_is_optional(self):
         form = self.make_validated_form(email='')
@@ -28,7 +29,7 @@ class SubscriptionFormTest(TestCase):
         form = self.make_validated_form(phone='')
         self.assertFalse(form.errors)
 
-    def test_must_inform_email_of_phone(self):
+    def test_must_inform_email_or_phone(self):
         form = self.make_validated_form(email='', phone='')
         self.assertListEqual(['__all__'], list(form.errors))
 
@@ -44,8 +45,8 @@ class SubscriptionFormTest(TestCase):
         self.assertListEqual([msg], error_list)
 
     def make_validated_form(self, **kwargs):
-        valid = dict(name='Jean Pierre', cpf='12345678901',
-                     email='jean.teixeira@aluno.riogrande.ifrs.edu.br', phone='53-91234-5678')
+        valid = dict(name='Cleber Fonseca', cpf='12345678901',
+                     email='profcleberfonseca@gmail.com', phone='53-912345678')
         data = dict(valid, **kwargs)
         form = SubscriptionForm(data)
         form.is_valid()

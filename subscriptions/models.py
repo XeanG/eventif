@@ -1,5 +1,4 @@
 from django.db import models
-
 from subscriptions.validators import validate_cpf
 
 
@@ -12,8 +11,8 @@ class Subscription(models.Model):
     paid = models.BooleanField('pago', default=False)
 
     class Meta:
-        verbose_name_plural = 'inscrições'
-        verbose_name = 'inscrição'
+        verbose_name_plural = "inscrições"
+        verbose_name = "inscrição"
         ordering = ['-created_at',]
 
     def __str__(self):

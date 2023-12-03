@@ -1,5 +1,5 @@
-from django.test import TestCase
 from django.core import mail
+from django.test import TestCase
 from django.shortcuts import resolve_url as r
 
 from subscriptions.forms import SubscriptionForm
@@ -15,37 +15,38 @@ class SubscriptionsNewGet(TestCase):
         self.assertEqual(200, self.response.status_code)
 
     def test_template(self):
-        """Must use subscriptions/subscripiton_form.html"""
+        """Must use subscriptions/subscription_form.html"""
         self.assertTemplateUsed(
             self.response, 'subscriptions/subscription_form.html')
 
     def test_html(self):
         """HTML must contain input tags"""
-        tags = (
-            ('<form', 1),
-            ('<input', 6),
-            ('type="text"', 3),
-            ('type="email"', 1),
-            ('type="submit"', 1)
-        )
+        tags = (("<form", 1),
+                ("<input", 6),
+                ('type="text"', 3),
+                ('type="email"', 1),
+                ('type="submit"', 1))
         for text, count in tags:
             with self.subTest():
                 self.assertContains(self.response, text, count)
 
     def test_csrf(self):
-        """HTML form must contain CSRF"""
-        self.assertContains(self.response, "csrfmiddlewaretoken")
+        """HTML must contain csrf"""
+        self.assertContains(self.response,  "csrfmiddlewaretoken")
 
     def test_has_form(self):
         """Context must have subscription form"""
-        form = self.response.context['form']
+        form = self.response.context["form"]
         self.assertIsInstance(form, SubscriptionForm)
 
 
 class SubscriptionsNewPostValid(TestCase):
     def setUp(self):
-        data = dict(name='Jean Pierre', cpf='12345678901',
-                    email='jean.teixeira@aluno.riogrande.ifrs.edu.br', phone='53991561217')
+        data = dict(name="Cleber Fonseca",
+                    cpf="12345678901",
+                    email="profcleberfonseca@gmail.com",
+                    phone="53-91234-5678")
+
         self.response = self.client.post(r('subscriptions:new'), data)
 
     def test_post(self):
@@ -83,6 +84,6 @@ class SubscriptionsNewPostInvalid(TestCase):
 
 class TemplateRegressionTest(TestCase):
     def test_template_has_nonfield_errors(self):
-        invalid_data = dict(name='Jean Pierre', cpf='12345678901')
+        invalid_data = dict(name='Cleber Fonseca', cpf='12345678901')
         response = self.client.post(r('subscriptions:new'), invalid_data)
         self.assertContains(response, '<ul class="errorlist nonfield">')

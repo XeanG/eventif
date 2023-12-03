@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from decouple import config, Csv
 from dj_database_url import parse as dburl
+import dj_database_url
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,11 +84,10 @@ WSGI_APPLICATION = 'eventif.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-DEFAULT_DBURL = 'sqlite:///' + str(BASE_DIR / 'db.sqlite3')
+default_dburl = "sqlite:///" + str(BASE_DIR / 'db.sqlite3')
 
 DATABASES = {
-    'default': config('DATABASE_URL', default=DEFAULT_DBURL, cast=dburl)
+    "default": config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
 
 
@@ -127,11 +128,13 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = str(BASE_DIR / 'staticfiles')
 
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 EMAIL_BACKEND = config('EMAIL_BACKEND')
 EMAIL_HOST = config('EMAIL_HOST')
 EMAIL_PORT = config('EMAIL_PORT', cast=int)
