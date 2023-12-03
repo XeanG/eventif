@@ -11,11 +11,11 @@ class ContactTests(TestCase):
             'email': 'jean.teixeira@aluno.riogrande.ifrs.edu.br',
             'message': 'teste'
         }
-        self.response = self.client.post("/contact/", data=self.valid_data)
+        self.response = self.client.post("/contato/", data=self.valid_data)
 
 
     def test_get(self):
-        response = self.client.get("/contact/")
+        response = self.client.get("/contato/")
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'contact/contact_form.html')
 
@@ -28,7 +28,7 @@ class ContactTests(TestCase):
             'email': 'invalid-email',
             'mensagem': 'invalido'
         }
-        response = self.client.post("/contact/", data=invalid_data)
+        response = self.client.post("/contato/", data=invalid_data)
         self.assertEqual(response.status_code, 200)
 
     def test_send_email(self):

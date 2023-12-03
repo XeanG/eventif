@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.template.loader import render_to_string
 from .forms import ContactForm
 
-def contact_view(request):
+def contact(request):
     if request.method == 'POST':
         return create(request)
     else:
