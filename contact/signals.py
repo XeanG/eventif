@@ -8,18 +8,18 @@ from django.contrib import messages
 from .models import Contact_model
 
 @receiver(post_save, sender=Contact_model)
-def enviar_resposta(sender, instance, **kwargs):
-    if instance.response:
+def enviar_resposta(sender, contato, **kwargs):
+    if contato.response:
         assunto = 'Resposta ao seu contato'
         email_origem = settings.DEFAULT_FROM_EMAIL
-        email_destino = instance.email
+        email_destino = contato.email
 
         contexto = {
-            'nome': instance.name,
-            'email': instance.email,
-            'telefone': instance.phone,
-            'mensagem': instance.message,
-            'resposta': instance.response,
+            'name': contato.name,
+            'email': contato.email,
+            'phone': contato.phone,
+            'message': contato.message,
+            'response': contato.response,
         }
 
         corpo_mensagem = render_to_string('contact/contact_response.txt', contexto)
